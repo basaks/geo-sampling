@@ -1,4 +1,4 @@
-#Extract cells that are touched by a road
+#Extract raster cells that are touched by a road
 ############################################################
 all_packages <- installed.packages()
 all_packages <- all_packages[,"Package"]
@@ -26,7 +26,7 @@ locations <- df[,1]
 
 r[locations] <- 1
 plot(r)
-plot(lines, add=T)
+plot(lines, add=TRUE)
 
 
 r_coords <- coordinates(r)
