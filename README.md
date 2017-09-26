@@ -8,4 +8,4 @@ R 3.4 version (later versions should be fine)
 
 ## Installing Requirements
 
-Required packages will be installed automatically.
+Required packages will be installed automatically, if not found.
