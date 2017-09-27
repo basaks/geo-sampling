@@ -1,15 +1,8 @@
 #Extract raster cells that are touched by a road
 ############################################################
-all_packages <- installed.packages()
-all_packages <- all_packages[,"Package"]
-
+source("install_import_packages.R")
 required_packages <- c("raster","sp")
-
-#install -> import the requirements
-for(i in length(required_packages)) 
-  if(!is.element(required_packages[i],  all_packages))
-    install.packages(required_packages[i])
-dummy <- lapply(required_packages,library,character.only=TRUE,quietly = TRUE)
+dummy <- install_import_packages(required_packages)
 
 #Simple road of two line segments
 cds <- rbind(c(-35,-35), c(35,35) , c(35,-25))
