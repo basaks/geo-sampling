@@ -1,4 +1,4 @@
-#Extract cells that are touched by a road
+#Extract raster cells that are touched by a road
 ############################################################
 all_packages <- installed.packages()
 all_packages <- all_packages[,"Package"]
@@ -14,7 +14,7 @@ dummy <- lapply(required_packages,library,character.only=TRUE,quietly = TRUE)
 #Simple road of two line segments
 cds <- rbind(c(-35,-35), c(35,35) , c(35,-25))
 lines <- spLines(cds)
-
+  
 # raster
 r <- raster(ncols=10, nrows=10, xmn = -50 , xmx = 50 , ymn = -50 , ymx = 50 )
 values(r) <- 10 + sample(1:10, ncell(r), replace=TRUE)
@@ -26,7 +26,7 @@ locations <- df[,1]
 
 r[locations] <- 1
 plot(r)
-plot(lines, add=T)
+plot(lines, add=TRUE)
 
 
 r_coords <- coordinates(r)
