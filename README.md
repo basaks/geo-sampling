@@ -19,9 +19,11 @@ To see a demo of extracting raster cells that are touched by a road, run
 
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex1.R", chdir = TRUE)
 
+
 To see a demo of extracting raster cells that are located within a margin around roads, run
 
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex2.R", chdir = TRUE)
+
 
 To extract a handfull of points at the target locations, run
 
