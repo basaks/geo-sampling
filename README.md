@@ -31,5 +31,6 @@ source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex2.R", 
 <li> To first extract points around given a buffer size and then extract a handful of points, 
 </ul>
 (Un/comment relevant lines then) run
+
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Run_Scripts.R", chdir = TRUE)
 
