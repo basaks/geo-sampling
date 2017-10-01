@@ -6,7 +6,6 @@ source("install_import_packages.R")
 required_packages <- c("raster","clhs","rgdal","moments","rgeos")
 dummy <- install_import_packages(required_packages)
 
-
 r <- raster(paste(data_folder,paste0(cov_names[1],".tif"), sep = "/"))
 cov_stack <- stack(r)
 for(i in 2:length(cov_names)){
@@ -18,7 +17,6 @@ road_shapefile <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE
 road_buff <- gBuffer(road_shapefile, byid = TRUE, width = width)
 plot(road_buff)
 dev.print(pdf, paste(output_folder,"Buffered_Roads.pdf",sep = "/"))
-
 
 #Intersect one of the rasters to extract locations
 road_extracted <- extract(r,road_buff, cellnumbers=TRUE)
@@ -59,8 +57,4 @@ for (i in no_samples){
 par(mfrow = c(1,1))
 plot(res)
 
-#df <- data.frame(rat15thk,tot15,modis4_te,si_geol1)
-#df$si_geol1 <- as.factor(df$si_geol1)
-#res <- clhs(df, size = no_samples, iter = 5000, progress = FALSE, simple = FALSE )
 }
-#cov_stack <- stack(rat15thk, tot15, modis4_te, si_geol1)
