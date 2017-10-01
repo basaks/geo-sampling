@@ -26,7 +26,10 @@ To see a demo of extracting raster cells that are located within a margin around
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex2.R", chdir = TRUE)
 <br> <br>
 
-To extract a handfull of points at the target locations, run
-
+<ul>
+<li> To extract a handful of points at the target locations, or </li>
+<li> To first extract points around given a buffer size and then extract a handful of points, 
+</ul>
+(Un/comment relevant lines then) run
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Run_Scripts.R", chdir = TRUE)
 
