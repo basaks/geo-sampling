@@ -4,7 +4,7 @@ A collection of geoscience based sampling tools.
 
 ## Environment 
 
-R 3.4 version (later versions should be fine)
+R 3.4 (later versions should be fine)
 
 ## Requirements
 
@@ -34,3 +34,5 @@ source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex2.R", 
 
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Run_Scripts.R", chdir = TRUE)
 
+<br> <br>
+Check the output folder for results (new shapefile, statistics, etc).

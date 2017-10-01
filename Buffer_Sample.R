@@ -1,16 +1,7 @@
 # Buffer along Roads and then sample representatively
 ############################################################
-
-#Buffer_Sample <- function(cov_names, data_folder, shape_file, output_folder, no_samples, width){
+Buffer_Sample <- function(cov_names, data_folder, shape_file, output_folder, no_samples, width){
   
-cov_names <- c("rat15thk","tot15","modis4_te","si_geol1") # si_geol1 is categorical
-data_folder = "/home/masoud/GA_data/GA-cover2"; # Where your input data exist
-shape_file = "geochem_sites" # Traget points
-output_folder = "."   # Output folder
-no_samples = 50 # Num
-width = 0.005 # Buffer size
-shape_file = "Roads_Sir_Sam"  # Line segments
-
 source("install_import_packages.R")
 required_packages <- c("raster","clhs","rgdal","moments","rgeos")
 dummy <- install_import_packages(required_packages)
@@ -23,14 +14,6 @@ for(i in 2:length(cov_names)){
   cov_stack <- stack(cov_stack,r)
 }
 
-
-#sirsam_data = "/home/masoud/GA_data/GA-cover2";
-#rat15thk <- raster(paste(sirsam_data,"rat15thk.tif", sep = "/"))
-#tot15 <- raster(paste(sirsam_data,"tot15.tif", sep = "/"))
-#modis4_te <- raster(paste(sirsam_data,"modis4_te.tif", sep = "/"))
-#si_geol1 <- raster(paste(sirsam_data,"si_geol1.tif", sep = "/"))
-
-#road_folder = "/media/masoud/16B0BE6AB0BE4FCB/fromJohn/Latin_Hyper_Cube"
 road_shapefile <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE)
 road_buff <- gBuffer(road_shapefile, byid = TRUE, width = width)
 plot(road_buff)
@@ -42,11 +25,6 @@ road_extracted <- extract(r,road_buff, cellnumbers=TRUE)
 df <- data.frame(road_extracted[1])
 for(i in 2:length(road_extracted)) df <- rbind(df , data.frame(road_extracted[i]))
 locations <- df[,1]
-
-#rat15thk <- rat15thk[locations]
-#tot15 <- tot15[locations]
-#modis4_te <- modis4_te[locations]
-#si_geol1 <- si_geol1[locations]
 
 cov_intersected <- extract(cov_stack,locations)
 df <- data.frame(cov_intersected)
@@ -84,6 +62,5 @@ plot(res)
 #df <- data.frame(rat15thk,tot15,modis4_te,si_geol1)
 #df$si_geol1 <- as.factor(df$si_geol1)
 #res <- clhs(df, size = no_samples, iter = 5000, progress = FALSE, simple = FALSE )
-
-#}
+}
 #cov_stack <- stack(rat15thk, tot15, modis4_te, si_geol1)
