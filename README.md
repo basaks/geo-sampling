@@ -26,6 +26,7 @@ To see a demo of extracting raster cells that are located within a margin around
 source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex2.R", chdir = TRUE)
 <br> <br>
 
+<a href="http://www.sciencedirect.com/science/article/pii/S009830040500292X"> conditioned Latin Hypercube Sampling (cLHS) </a>
 <ul>
 <li> To extract a handful of points at the target locations, or </li>
 <li> To first extract points around given a buffer size and then extract a handful of points, 
