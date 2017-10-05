@@ -11,4 +11,3 @@ width = 0.005 # Buffer size
 road_shapefile_name = "Roads_Sir_Sam"  # Line segments
 source("Buffer_Sample.R")
 Buffer_Sample(covariate_names, sirsam_data, road_shapefile_name, exp_folder, no_samples, width)
-  
