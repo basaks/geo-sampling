@@ -6,6 +6,6 @@ install_import_packages <- function(required_packages){
   for(i in length(required_packages)) 
     if(!is.element(required_packages[i],  all_packages))
       install.packages(required_packages[i])
-  dummy <- lapply(required_packages,library,character.only=TRUE,quietly = TRUE)
+  dummy <- lapply(required_packages,library,character.only=TRUE,quietly = TRUE, verbose = FALSE)
 }
   
