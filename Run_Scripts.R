@@ -1,5 +1,6 @@
 covariate_names = c("rat15thk","tot15","modis4_te","si_geol1") # si_geol1 is categorical
-sirsam_data = "/home/masoud/GA_data/GA-cover2"; # Where your input data exist
+#sirsam_data = "/home/masoud/GA_data/GA-cover2"; # Where your input data exist
+sirsam_data = "/g/data/ge3/feizhang/GA-cover2-LHC-Test"; # Where your input data exist
 shapefile_name = "geochem_sites" # Traget points
 exp_folder = "."   # Output folder
 no_samples = 50 # Number of output samples. Try different values or for example use seq(20,50,10) to have 20 30 40 50 sampled points
