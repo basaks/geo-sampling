@@ -13,7 +13,7 @@ Required packages will be installed automatically, if not found.
 ## How To Use
 Configurations are stored in "Run_Scripts.R" file. So, first make your changes (e.g. change the input pathes to your choice).
 <br> <br>
-
+ 
 Currently the following functionalities are supported:
 
 To see a demo of extracting raster cells that are touched by a road, run
