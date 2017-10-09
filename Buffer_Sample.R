@@ -16,8 +16,10 @@ for(i in 2:length(cov_names)){
 
 road_shapefile <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE)
 road_buff <- gBuffer(road_shapefile, byid = TRUE, width = width)
+pdf("Buffered_Roads.pdf")
 plot(road_buff)
-dev.print(pdf, paste(output_folder,"Buffered_Roads.pdf",sep = "/"))
+dev.off()  
+#dev.print(pdf, paste(output_folder,"Buffered_Roads.pdf",sep = "/"))
 
 road_filename <- paste(output_folder,paste0("roads_Buffer_",as.character(width)),sep = "/")
 if(!file.exists(road_filename)){
