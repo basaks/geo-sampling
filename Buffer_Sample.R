@@ -50,5 +50,7 @@ for (i in no_samples){
   dummy <- show_save_statistics(cov_names, res, RND_samples, dsn_folder_cLHS)
 }
 
+pdf("Objective Function.pdf")
 plot(res)
+dev.off()
 }

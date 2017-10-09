@@ -3,6 +3,8 @@ show_save_statistics <- function(cov_names, res, RND_samples, dsn_folder){
   par(mfrow = c(3,1))
   #Save histograms in the folders
   for(i in 1:length(cov_names)){
+    pdf(paste(dsn_folder, paste0(cov_names[i],".pdf"), sep = "/"))
+    
     tmp_cov <- res$initial_object[[i]]
     if(!is.numeric(tmp_cov))  tmp_cov <- as.numeric(tmp_cov)
     hist(tmp_cov, main = paste("Original histogram of",cov_names[i]), xlab = paste("Mean:",mean(tmp_cov), ", Variance", var(tmp_cov)), freq = FALSE)
@@ -12,7 +14,9 @@ show_save_statistics <- function(cov_names, res, RND_samples, dsn_folder){
     tmp_cov <- res$initial_object[[i]][RND_samples]
     if(!is.numeric(tmp_cov))  tmp_cov <- as.numeric(tmp_cov)
     hist(tmp_cov, main = paste("RND histogram of",cov_names[i]), xlab = paste("Mean:",mean(tmp_cov), ", Variance", var(tmp_cov)), freq = FALSE)
-    dev.print(pdf, paste(dsn_folder, paste0(cov_names[i],".pdf"), sep = "/"))
+    #dev.print(pdf, paste(dsn_folder, paste0(cov_names[i],".pdf"), sep = "/"))
+    
+    dev.off()
   }
   par(mfrow = c(1,1))
 }
