@@ -5,6 +5,7 @@ Read_Covariates <- function(cov_file, data_folder) {
   print("Reading input covariates.")
   num_categorical <- 0
   fname <- trimws(as.character(all_cov$V1[1]))
+  print(fname)
   r <- raster(fname)
   cov_stack <- stack(r)
   
@@ -25,6 +26,6 @@ Read_Covariates <- function(cov_file, data_folder) {
       cov_stack <- stack(cov_stack, r)
     }
   }
+  print(paste(as.character(length(cov_stack@layers)) , "covariates were read out of which", as.character(num_categorical), "recognized as categorical covariates."))
   return(cov_stack)
-  print(paste(as.character(length(cov_stack@layers)) , "covariates read out of which", as.character(num_categorical), "were recognized as categorical covariates."))
 }
