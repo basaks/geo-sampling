@@ -25,6 +25,6 @@ Read_Covariates <- function(cov_file, data_folder) {
       cov_stack <- stack(cov_stack, r)
     }
   }
+  return(cov_stack)
   print(paste(as.character(length(cov_stack@layers)) , "covariates read out of which", as.character(num_categorical), "were recognized as categorical covariates."))
-  cov_stack
 }
