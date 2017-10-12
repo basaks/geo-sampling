@@ -24,13 +24,13 @@ sample_clhs <- function(covariate_file, data_folder, shape_file, output_folder, 
   
   for (i in no_samples){  
     #par(mfrow = c(3,1))
-    #dsn_folder_cLHS = paste(output_folder, paste0("cLHS_", i,"points"), sep = "/")
-    #dir.create(dsn_folder_cLHS, recursive = TRUE)
-    #print(paste("Running cLHS to sample", as.character(i),"points. Check", dsn_folder_cLHS,"for results when finished."))
-    #res <- clhs(df, size = i, iter = 10000, progress = TRUE, simple = FALSE , weights = list(numeric = 1, factor = 1, correlation =1))
-    #S_clhs <- S[res$index_samples,]
+    dsn_folder_cLHS = paste(output_folder, paste0("cLHS_", i,"points"), sep = "/")
+    dir.create(dsn_folder_cLHS, recursive = TRUE)
+    print(paste("Running cLHS to sample", as.character(i),"points. Check", dsn_folder_cLHS,"for results when finished."))
+    res <- clhs(df, size = i, iter = 10000, progress = TRUE, simple = FALSE , weights = list(numeric = 1, factor = 1, correlation =1))
+    S_clhs <- S[res$index_samples,]
     #plot(coordinates(S_clhs))
-    #writeOGR(S_clhs, dsn = dsn_folder_cLHS, layer = paste(shape_file, as.character(i), "cLHS", sep = "_"), driver = "ESRI Shapefile", overwrite_layer = TRUE)
+    writeOGR(S_clhs, dsn = dsn_folder_cLHS, layer = paste(shape_file, as.character(i), "cLHS", sep = "_"), driver = "ESRI Shapefile", overwrite_layer = TRUE)
     
     dsn_folder_RND = paste(output_folder, paste0("RND_", i,"points"), sep = "/")
     dir.create(dsn_folder_RND, recursive = TRUE)
