@@ -8,7 +8,11 @@ R 3.4 (later versions should be fine)
 
 ## Requirements
 
-Required packages will be installed automatically, if not found.
+Required packages will be installed automatically, if not found. Nevertheless, run this command in R to install prerequisites:
+<br>
+install.packages(c("raster","clhs","rgdal","moments","rgeos","BalancedSampling"))
+<br>
+Also, see Run_NCI.sh for NCI support.
 
 ## How To Use
 Configurations are stored in "Run_Scripts.R" file. So, first make your changes (e.g. change the input pathes to your choice).
