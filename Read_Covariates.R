@@ -1,7 +1,8 @@
 #Read input covariates from a text file and return a covstack
 ############################################################
-Read_Covariates <- function(cov_file, data_folder) {
-  all_cov <- read.table(paste(data_folder,cov_file, sep = "/"), header = FALSE)
+Read_Covariates <- function(cov_file) {
+  #all_cov <- read.table(paste(data_folder,cov_file, sep = "/"), header = FALSE)
+  all_cov <- read.table(cov_file)
   print("Reading input covariates.")
   expected_CRS <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
   print(paste("Expected CRS is", expected_CRS))
