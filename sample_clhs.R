@@ -7,7 +7,7 @@ sample_clhs <- function(covariate_file, data_folder, shape_file, output_folder, 
   dummy <- install_import_packages(required_packages)
   
   source("Read_Covariates.R")
-  cov_stack <- Read_Covariates(covariate_file,data_folder)
+  cov_stack <- Read_Covariates(covariate_file)
   
   S <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE)
   print(paste(shape_file,"with",as.character(length(S$SampleID)),"points was read. Intersecting that with the input covariates."))
