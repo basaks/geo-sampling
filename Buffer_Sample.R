@@ -1,18 +1,17 @@
 # Buffer along Roads and then sample representatively
 ############################################################
-Buffer_Sample <- function(cov_names, data_folder, shape_file, output_folder, no_samples, width){
+Buffer_Sample <- function(covariate_file, data_folder, shape_file, output_folder, no_samples, width){
 
 source("show_save_statistics.R")
 source("install_import_packages.R")
+source("Read_Covariates.R")
+  
 required_packages <- c("raster","clhs","rgdal","moments","rgeos")
 dummy <- install_import_packages(required_packages)
 
-r <- raster(paste(data_folder,paste0(cov_names[1],".tif"), sep = "/"))
-cov_stack <- stack(r)
-for(i in 2:length(cov_names)){
-  r <- raster(paste(data_folder,paste0(cov_names[i],".tif"), sep = "/"))
-  cov_stack <- stack(cov_stack,r)
-}
+#Read only one covaraite file for some statistics
+all_cov_files <- Parse_Text(covariate_file)
+r <- raster(all_cov[1,])
 
 road_shapefile <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE)
 road_buff <- gBuffer(road_shapefile, byid = TRUE, width = width)
@@ -37,10 +36,16 @@ for(i in 2:length(road_extracted)) df <- rbind(df , data.frame(road_extracted[i]
 locations <- df[,1]
 print(paste("Total number of pixels is", as.character(r@ncols * r@nrows), ",", length(locations), "pixels extracted along the roads.", sep = " "))
 
-cov_intersected <- extract(cov_stack,locations)
-df <- data.frame(cov_intersected)
-#Convert to categorical
-df$si_geol1 <- as.factor(df$si_geol1)
+
+df <- Read_Covariates(covariate_file, locations)
+
+# cov_intersected <- extract(cov_stack,locations)
+# df <- data.frame(cov_intersected)
+# 
+# #Convert to categorical
+# for(i in 1:length(cov_stack@layers)) 
+#   if(cov_stack@layers[[i]]@data@isfactor) 
+#     df[,i] <- as.factor(df[,i])
 
 for (i in no_samples){  
   dsn_folder_cLHS = paste(output_folder, paste0("cLHS_", i,"points"), sep = "/")
