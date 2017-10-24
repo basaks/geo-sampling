@@ -17,7 +17,7 @@ Parse_Text <- function(cov_file) {
   return(fnames)
 }
 
-#Read input covariates from a text file and return a covstack
+#Read input covariates from a text file, intersct with targets or road buffer and return a data frame
 ############################################################
 Read_Covariates <- function(cov_file, to_be_intersected) {
   all_cov <- Parse_Text(cov_file)
@@ -43,9 +43,7 @@ Read_Covariates <- function(cov_file, to_be_intersected) {
       print(paste("CRS converted for",fname))
       r@crs <- expected_CRS
     }
-    
     #Intersect the covariates with the target locations
-    
     cov_intersected <- data.frame(extract(r, to_be_intersected))
     colnames(cov_intersected) <- r@data@names
     if(i == 1)
@@ -60,8 +58,6 @@ Read_Covariates <- function(cov_file, to_be_intersected) {
     # for(i in 1:length(cov_stack@layers)) 
     #   if(cov_stack@layers[[i]]@data@isfactor) 
     #     df[,i] <- as.factor(df[,i])
-    # 
-    # 
     # #Stack 
     # if(i == 1)
     #   cov_stack <- stack(r)
