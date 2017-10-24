@@ -6,6 +6,7 @@ module load  proj/4.8.0
 module load geos/3.5.0
 
 module load  R/3.4.0
-R --vanilla  output
+Rscript Run_Scripts.R
+#R --vanilla  output
 
 
