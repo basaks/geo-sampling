@@ -1,34 +1,17 @@
 #Intersect rasters with target points and then sample representatively
 ############################################################
-sample_balanced <- function(covariate_file, data_folder, shape_file, output_folder, no_samples){
+sample_balanced <- function(covariate_list, data_folder, shape_file, output_folder, no_samples, existing_model = NULL){
   source("install_import_packages.R")
+  source("Read_Covariates.R")
+  
   required_packages <- c("raster","BalancedSampling","rgdal","moments")
   dummy <- install_import_packages(required_packages)
   
-  source("Read_Covariates.R")
-  cov_stack <- Read_Covariates(covariate_file,data_folder)
-  
   S <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE)
-  print(paste(shape_file,"with",as.character(length(S$SampleID)),"points was read. Intersecting that with the input covariates."))
-  #Intersect the covariates with the target locations
-  cov_intersected <- extract(cov_stack, S)
-  df <- data.frame(cov_intersected)
+  print(paste(shape_file,"with",as.character(nrow(S@coords)),"points was read. Intersecting that with the input covariates."))
   
-  print("Categorical covariates (if any) will be removed for blanaced sampling.")
-  #Remove categorical (if any)
-  len1 <- length(cov_stack@layers)
-  i <- 1
-  j <- 1
-  while(i <= len1){ 
-    if(cov_stack@layers[[j]]@data@isfactor){
-      df[,i] <- NULL
-      len1 <- len1 - 1
-    }
-    else{
-      i <- i + 1
-    }
-    j <- j + 1
-  }
+  df <- Read_Covariates(covariate_list, S, existing_model)
+  
   df <- as.matrix(df)
   #df <- df[1:100,]
   N = NROW(df); # population size
