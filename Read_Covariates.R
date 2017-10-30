@@ -17,9 +17,19 @@ Parse_Text <- function(cov_file) {
   return(fnames)
 }
 
-#Read input covariates from a text file, intersct with targets or road buffer and return a data frame
+#Read input covariates from a text file, intersect with targets or road buffer and return a data frame
 ############################################################
-Read_Covariates <- function(cov_file, to_be_intersected) {
+Read_Covariates <- function(cov_file, to_be_intersected, existing_model = NULL) {
+  
+  if(!is.null(existing_model)){
+    previous_model <- raster(existing_model)
+    tmp_w <- values(previous_model)
+    tmp_w[is.na(tmp_w)] <- 0
+    values(previous_model) <- tmp_w
+    previous_model <- values(previous_model) / max(values(previous_model), na.rm = TRUE)
+    print(paste("Existing prediction at" , existing_model, "will be used as weight."))
+  }
+    
   all_cov <- Parse_Text(cov_file)
   
   print("Reading input covariates.")
@@ -43,6 +53,11 @@ Read_Covariates <- function(cov_file, to_be_intersected) {
       print(paste("CRS converted for",fname))
       r@crs <- expected_CRS
     }
+    
+    #weighting
+    if(!is.null(existing_model))
+      values(r) <- values(r) * previous_model
+    
     #Intersect the covariates with the target locations
     cov_intersected <- data.frame(extract(r, to_be_intersected))
     colnames(cov_intersected) <- r@data@names
