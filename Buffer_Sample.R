@@ -1,6 +1,6 @@
 # Buffer along Roads and then sample representatively
 ############################################################
-Buffer_Sample <- function(covariate_list, data_folder, shape_file, output_folder, no_samples, width){
+Buffer_Sample <- function(covariate_list, data_folder, shape_file, output_folder, no_samples, width, existing_model = NULL){
   
 source("install_import_packages.R")
 source("show_save_statistics.R")
@@ -34,7 +34,7 @@ for(i in 2:length(road_extracted)) df <- rbind(df , data.frame(road_extracted[i]
 locations <- df[,1]
 print(paste("Total number of pixels is", as.character(r@ncols * r@nrows), ",", length(locations), "pixels extracted along the roads.", sep = " "))
 
-df <- Read_Covariates(covariate_list, locations)
+df <- Read_Covariates(covariate_list, locations, existing_model)
 
 r_coords <- coordinates(r)
 r_coords <- r_coords[locations,]
