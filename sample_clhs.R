@@ -1,6 +1,6 @@
 #Intersect rasters with target points and then sample representatively
 ############################################################
-sample_clhs <- function(covariate_list, data_folder, shape_file, output_folder, no_samples){
+sample_clhs <- function(covariate_list, data_folder, shape_file, output_folder, no_samples, existing_model = NULL){
   
   source("install_import_packages.R")
   source("Read_Covariates.R")
@@ -11,7 +11,7 @@ sample_clhs <- function(covariate_list, data_folder, shape_file, output_folder, 
   S <- readOGR(dsn = data_folder, layer = shape_file, verbose = FALSE)
   print(paste(shape_file,"with",as.character(nrow(S@coords)),"points was read. Intersecting that with the input covariates."))
   
-  df <- Read_Covariates(covariate_list , S)
+  df <- Read_Covariates(covariate_list , S, existing_model)
   
   #  cov_intersected <- extract(cov_stack, S)
   #df <- data.frame(cov_intersected)
