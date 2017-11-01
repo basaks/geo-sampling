@@ -1,7 +1,7 @@
-covariate_file = "/home/masoud/GA_data/GA-cover2/sirsam_covariates_Cr.txt" #
-sirsam_data = "/home/masoud/GA_data/GA-cover2"; # Where your input data exist
+covariate_file = "/home/masoud/GA_data/GA-cover2/sirsam_covariates_Cr.txt" # A text file containing address of each input .tif covariate in one line (insert # in the begining of a line to exclude the covariate)
+sirsam_data = "/home/masoud/GA_data/GA-cover2"; # Where your input data (covariates and shapefile) exist
 #sirsam_data = "/short/ge3/jrw547/GA-cover2"
-exp_folder = "."   # Output folder
+exp_folder = "."   # Output folder. Where you want to store the results
 no_samples = c( 32 , 64) # Number of output samples. Try different values or for example use seq(20,50,10) to have 20 30 40 50 sampled points
 
 source("Buffer_Sample.R")
@@ -13,17 +13,17 @@ road_shapefile_name = "Roads_Sir_Sam"  # Line segments
 Buffer_Sample(covariate_file, sirsam_data, road_shapefile_name, exp_folder, no_samples, width)
 
 #Second scenario: Sample when target points are available
-shapefile_name = "geochem_sites" # geochem_sites_log Traget points
+shapefile_name = "geochem_sites" # Traget points shapefile. It should be without extension.
 sample_clhs(covariate_file, sirsam_data, shapefile_name, exp_folder, no_samples)
 
 #Third scenario: Similar to the first scenario but with an existing model used for weighting the inputs
 width = 0.005 # Buffer size
-existing_model = "/home/masoud/Intenship/LHS/geo-sampling/sirsam_Na_original_prediction.tif"
+existing_model = "/home/masoud/GA_data/GA-cover2/sirsam_Na_original_prediction.tif"
 road_shapefile_name = "Roads_Sir_Sam"  # Line segments
 Buffer_Sample(covariate_file, sirsam_data, road_shapefile_name, exp_folder, no_samples, width, existing_model)
 
 #Fourth scenario: Similar to the second scenario but with an existing model used for weighting the inputs
-existing_model = "/home/masoud/Intenship/LHS/geo-sampling/sirsam_Na_original_prediction.tif"
+existing_model = "/home/masoud/GA_data/GA-cover2/sirsam_Na_original_prediction.tif"
 shapefile_name = "geochem_sites" # geochem_sites_log Traget points
 source("sample_clhs_existing_model.R")
 sample_clhs(covariate_file, sirsam_data, shapefile_name, exp_folder, no_samples, existing_model)
