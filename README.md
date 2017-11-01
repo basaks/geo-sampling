@@ -20,24 +20,14 @@ Configurations are stored in "Run_Scripts.R" file. So, first make your changes (
  
 Currently the following functionalities are supported:
 
-#To see a demo of extracting raster cells that are touched by a road, run
-
-#source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex1.R", chdir = TRUE)
-#<br> <br>
-  
-#To see a demo of extracting raster cells that are located within a margin around roads, run
-
-#source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Extract_demo_ex2.R", chdir = TRUE)
-#<br> <br>
-
 <a href="http://www.sciencedirect.com/science/article/pii/S009830040500292X"> conditioned Latin Hypercube Sampling (cLHS) </a>
 <ul>
 <li> To extract a handful of points at the target locations, or </li>
 <li> To first extract points around given a buffer size and then extract a handful of points, 
 </ul>
 (Un/comment relevant lines and then) run
-
-source("WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling/Run_Scripts.R", chdir = TRUE)
+cd "WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling
+Rscript Run_Scripts.R
 
 <br> <br>
 Check the output folder for results (new shapefile, statistics, etc).
