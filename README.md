@@ -25,8 +25,8 @@ Currently the following functionalities are supported:
 <li> To extract a handful of points at the target locations, or </li>
 <li> To first extract points around given a buffer size and then extract a handful of points, 
 </ul>
-(Un/comment relevant lines and then) run
-<br>
+Un/comment relevant lines in the file Run_Scripts.R according to what functionality you want and then run
+<br> <br>
 cd "WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling
 <br>
 Rscript Run_Scripts.R
