@@ -29,7 +29,7 @@ Un/comment relevant lines in the file Run_Scripts.R according to what functional
 <br> <br>
 cd "WHERE YOU HAVE STORED THIS REPOSITORY/geo-sampling
 <br>
-Rscript Run_Scripts.R
+Rscript   Run_Scripts.R
 
 <br> <br>
 Check the output folder for results (new shapefile, statistics, etc).
