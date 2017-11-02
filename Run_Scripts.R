@@ -32,3 +32,6 @@ sample_clhs(covariate_file, sirsam_data, shapefile_name, exp_folder, no_samples,
 source("sample_balanced.R")
 shapefile_name = "geochem_sites" # geochem_sites_log Traget points
 sample_balanced(covariate_file, sirsam_data, shapefile_name, exp_folder, no_samples)
+
+#LHS from a shapefile
+sample_lhs_1D(sirsam_data, shapefile_name, exp_folder, no_samples)
