@@ -6,6 +6,7 @@ source("install_import_packages.R")
 source("show_save_statistics.R")
 source("Read_Covariates.R")
   
+#import the requirements 
 required_packages <- c("raster","clhs","rgdal","moments","rgeos")
 dummy <- install_import_packages(required_packages)
 
@@ -29,16 +30,19 @@ if(!file.exists(road_filename)){
   road_extracted <- dget(road_filename)
 }
 
+#Extracting coordinates of the road (line) segments 
 df <- data.frame(road_extracted[1])
 for(i in 2:length(road_extracted)) df <- rbind(df , data.frame(road_extracted[i]))
 locations <- df[,1]
 print(paste("Total number of pixels is", as.character(r@ncols * r@nrows), ",", length(locations), "pixels extracted along the roads.", sep = " "))
 
+#Reading the given covariates and intersecting with the road segments
 df <- Read_Covariates(covariate_list, locations, existing_model)
 
 r_coords <- coordinates(r)
 r_coords <- r_coords[locations,]
 
+# Sample and save the results
 for (i in no_samples){  
   dsn_folder_cLHS = paste(output_folder, paste0("cLHS_", i,"points"), sep = "/")
   dir.create(dsn_folder_cLHS, recursive = TRUE)
