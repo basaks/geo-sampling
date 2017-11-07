@@ -26,12 +26,12 @@ sample_clhs(covariate_file, sirsam_data, shapefile_name, exp_folder, no_samples)
 
 #Third scenario: Similar to the first scenario but with an existing model used for weighting the inputs
 width = 0.005 # Buffer size
-existing_model = "/home/masoud/GA_data/GA-cover2/sirsam_Na_original_prediction.tif"
+existing_model = "./sirsam_Na_original_prediction.tif"
 road_shapefile_name = "Roads_Sir_Sam"  # Line segments
 Buffer_Sample(covariate_file, sirsam_data, road_shapefile_name, exp_folder, no_samples, width, existing_model)
 
 #Fourth scenario: Similar to the second scenario but with an existing model used for weighting the inputs
-existing_model = "/home/masoud/GA_data/GA-cover2/sirsam_Na_original_prediction.tif"
+existing_model = "./sirsam_Na_original_prediction.tif"
 shapefile_name = "geochem_sites" # geochem_sites_log Traget points
 source("sample_clhs_existing_model.R")
 sample_clhs(covariate_file, sirsam_data, shapefile_name, exp_folder, no_samples, existing_model)
