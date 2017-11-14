@@ -49,8 +49,8 @@ for (i in no_samples){
   print(paste("Executing the cLHS to find", as.character(i), "points",sep = " "))
   res <- clhs(df, size = i, iter = 10000, progress = TRUE, simple = FALSE , weights = list(numeric = 1, factor = 1, correlation =1))
   
-  RND_samples <- sample(1:length(locations),i)
-  dummy <- show_save_statistics(colnames(df), res, RND_samples, dsn_folder_cLHS)
+  #RND_samples <- sample(1:length(locations),i)
+  dummy <- show_save_statistics(colnames(df), res, dsn_folder_cLHS)
   
   pdf(paste(dsn_folder_cLHS,"Objective_Function.pdf", sep = '/'))
   plot(res)
