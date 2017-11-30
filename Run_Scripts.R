@@ -3,7 +3,7 @@ covariate_file = "/home/masoud/GA_data/GA-cover2/sirsam_covariates_Na.txt" # For
 #covariate_file = "/short/ge3/jrw547/GA-cover2/sirsam_covariates_Na.txt" # For Sirsam dataset (in NCI)
 #covariate_file = "/g/data1a/ge3/john/jobs/national/geochem/RF_Wii/weathering_index_LHC.txt" # For national dataset
 
-# Where your input data (covariates and shapefile) exist
+# Where your input data (shapefile) exist
 sirsam_data = "/home/masoud/GA_data/GA-cover2"; 
 #sirsam_data = "/short/ge3/jrw547/GA-cover2"
 #national_data = "/g/data/ge3/covariates/Sites/geochem"
