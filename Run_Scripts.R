@@ -15,14 +15,14 @@ source("Buffer_Sample.R")
 source("sample_clhs.R")
 
 #First scenario: Buffering along the roads and then sampling
-width = 0.005 # Buffer size
-road_shapefile_name = "Roads_Sir_Sam"  # Line segments
-Buffer_Sample(covariate_file, input_data, road_shapefile_name, exp_folder, no_samples, width)
+#width = 0.005 # Buffer size
+#road_shapefile_name = "Roads_Sir_Sam"  # Line segments
+#Buffer_Sample(covariate_file, input_data, road_shapefile_name, exp_folder, no_samples, width)
 
 #Second scenario: Sample when target points are available
-#shapefile_name = "geochem_sites" # Traget points shapefile. It should be without extension.
+shapefile_name = "geochem_sites" # Traget points shapefile. It should be without extension.
 #shapefile_name = "NGSA_IM_TOS"  # For national dataset
-#sample_clhs(covariate_file, input_data, shapefile_name, exp_folder, no_samples)
+sample_clhs(covariate_file, input_data, shapefile_name, exp_folder, no_samples)
 
 #Third scenario: Similar to the first scenario but with an existing model used for weighting the inputs
 #width = 0.005 # Buffer size
@@ -33,7 +33,6 @@ Buffer_Sample(covariate_file, input_data, road_shapefile_name, exp_folder, no_sa
 #Fourth scenario: Similar to the second scenario but with an existing model used for weighting the inputs
 #existing_model = "./sirsam_Na_original_prediction.tif"
 #shapefile_name = "geochem_sites" # geochem_sites_log Traget points
-#source("sample_clhs_existing_model.R")
 #sample_clhs(covariate_file, input_data, shapefile_name, exp_folder, no_samples, existing_model)
 
 #Balanced sampling. All covariates must be continues valued, no categorical
