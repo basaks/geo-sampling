@@ -35,4 +35,4 @@ Rscript   Run_Scripts.R
 <br> <br>
 Check the output folder for results (new shapefile, statistics, etc).
 <br> <br>
-Also, see this <a href="https://github.com/GeoscienceAustralia/geo-sampling/blob/master/GeoSampling_Walkthrough.pdf"> Walkthrough </a> for more help.
+Also, see this <a href="https://github.com/GeoscienceAustralia/geo-sampling/blob/master/GeoSampling_Walkthrough.pdf"> walkthrough </a> for more help.
