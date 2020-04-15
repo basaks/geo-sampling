@@ -33,8 +33,9 @@ Read_Covariates <- function(cov_file, to_be_intersected, existing_model = NULL) 
   all_cov <- Parse_Text(cov_file)
   
   print("Reading input covariates.")
-  expected_CRS <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
-  print(paste("Expected CRS is", expected_CRS))
+
+  expected_CRS <- to_be_intersected@proj4string
+  print(paste("Shapefile CRS is", expected_CRS))
   num_categorical <- 0
   
   for(i in 1:nrow(all_cov)){
@@ -50,8 +51,8 @@ Read_Covariates <- function(cov_file, to_be_intersected, existing_model = NULL) 
     }
     #CRS check
     if(!compareCRS(expected_CRS,r@crs)){
-      print(paste("CRS converted for",fname))
-      r@crs <- expected_CRS
+      print(paste("CRS mismatch, reprojecting", fname, "to shapefile CRS"))
+      r <- projectRaster(from=r, crs=expected_CRS)
     }
     
     #weighting
