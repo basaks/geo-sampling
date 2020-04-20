@@ -32,6 +32,10 @@ There are also some scripts to assist with installing on Gadi (NCI) and Ubuntu 1
 installed manually. See the installation scripts for details on how to do this.*
 
 ### Gadi:
+To install on gadi, run:
+
+`./gadi_install.sh`
+
 By default, R libraries will be installed to your home directory on the NCI. In some cases,
 such as if you want other people to be able to submit jobs using your geo-sampling installation, 
 you may wish to install the R libraries to a g/data directory. To do this, set the desired R library 
@@ -39,11 +43,11 @@ path by setting the `R_LIBS` environment variable:
 
 `export R_LIBS="/path/to/R/library`
 
-To install, run:
-
-`./gadi_install.sh`
-
 ### Ubuntu 18.04
+To install on Ubuntu 18.04, run:
+
+`./ubuntu1804_install.sh`
+
 The Ubuntu scripts installs required system packages (GDAL, PROJ) and R packages. Installing 
 system packages requires sudo privileges, so this script may request your unix password.
 
@@ -51,12 +55,11 @@ By default, R libraries will be installed to the R user library directory
 (`"$HOME/R/x86_64-pc-linux-gnu-library/3.4/"`). If you wish to install to a different directory,
 you can modify the `LIB_PATH` variable on line 15 of the installation script.
 
-To install, run:
-
-`./ubuntu1804_install.sh`
+This script may work for other versions of Ubuntu. It may also work for other Linux distributions, but the
+names of packages and the package manager may be different and require modification.
 
 ## How To Use
-Configurations are stored in "Run_Scripts.R" file. So, first make your changes (e.g. change the input pathes to your choice).
+Configurations are stored in `Run_Scripts.R` file. So, first make your changes (e.g. change the input pathes to your choice).
  
 Currently the following functionalities are supported:
 
