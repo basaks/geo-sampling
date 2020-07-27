@@ -10,7 +10,8 @@ module load R/3.6.1
 module load gdal/3.0.2
 module load proj/6.2.1
 
-# Set 'R_LIBS' to the directory containing R packages from installation.
-export R_LIBS=/g/data/ge3/bren/latin_hypercube/R/libs
+# If you've installed your R libs somewhere other than the default
+# $HOME/R directory, set that directory here:
+# export R_LIBS=
 
 Rscript Run_Scripts.R
