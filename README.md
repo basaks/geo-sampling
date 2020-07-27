@@ -40,7 +40,7 @@ By default, R libraries will be installed to your home directory on the NCI. To 
 libararies to another directory, set the desired R library path by setting the `R_LIBS` environment 
 variable **before running the installation**:
 
-`export R_LIBS="/path/to/R/library`
+`export R_LIBS=/path/to/R/library`
 
 ### Ubuntu 18.04
 To install on Ubuntu 18.04, run:
