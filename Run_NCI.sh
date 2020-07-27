@@ -6,6 +6,8 @@
 #PBS -l wd
 #PBS -j oe
 
+module purge
+
 module load R/3.6.1
 module load gdal/3.0.2
 module load proj/6.2.1
