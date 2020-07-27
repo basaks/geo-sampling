@@ -85,3 +85,5 @@ module load R/3.6.1
 module load gdal/3.0.2
 module load proj/6.2.1
 ```
+
+The `Run_NCI.sh` script can assist with this, and can also be used as a template for submitting jobs.
