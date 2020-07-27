@@ -85,7 +85,3 @@ module load R/3.6.1
 module load gdal/3.0.2
 module load proj/6.2.1
 ```
-
-The `Run_NCI.sh` script will assist with this, and can be used as a template for submitting jobs.
-Make sure you set the `R_LIBS` variable in the script to the directory where you installed your
-libraries on the NCI!
