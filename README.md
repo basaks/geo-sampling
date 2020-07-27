@@ -36,10 +36,9 @@ To install on gadi, run:
 
 `./gadi_install.sh`
 
-By default, R libraries will be installed to your home directory on the NCI. In some cases,
-such as if you want other people to be able to submit jobs using your geo-sampling installation, 
-you may wish to install the R libraries to a g/data directory. To do this, set the desired R library 
-path by setting the `R_LIBS` environment variable:
+By default, R libraries will be installed to your home directory on the NCI. To install 
+libararies to another directory, set the desired R library path by setting the `R_LIBS` environment 
+variable **before running the installation**:
 
 `export R_LIBS="/path/to/R/library`
 
