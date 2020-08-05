@@ -2,15 +2,11 @@
 ############################################################
 Parse_Text <- function(cov_file) {
   all_cov <- read.table(cov_file)
-  len1 = 0
-  for(i in 1:length(all_cov$V1)){
-    fname <- trimws(as.character(all_cov$V1[i]))
-    if(!startsWith(fname , "#")){
-      if(len1 == 0)
-        fnames <- fname
-      else
-        fnames <- rbind(fnames,fname)
-      len1 <- len1 + 1
+  fnames <- c()
+  for (i in 1:nrow(all_cov)){
+    fname <- c(trimws(as.character(all_cov[, 1][i])), as.character(all_cov[, 2][i]))
+    if (!startsWith(fname[1] , "#")){
+      fnames <- rbind(fnames,fname)
     }
   }
   rownames(fnames) <- c()
@@ -20,7 +16,7 @@ Parse_Text <- function(cov_file) {
 #Read input covariates from a text file, intersect with targets or road buffer and return a data frame
 ############################################################
 Read_Covariates <- function(cov_file, to_be_intersected, existing_model = NULL) {
-  
+ 
   if(!is.null(existing_model)){
     previous_model <- raster(existing_model)
     tmp_w <- values(previous_model)
@@ -31,55 +27,43 @@ Read_Covariates <- function(cov_file, to_be_intersected, existing_model = NULL) 
   }
     
   all_cov <- Parse_Text(cov_file)
-  
+  print(all_cov)
   print("Reading input covariates.")
 
   expected_CRS <- to_be_intersected@proj4string
   print(paste("Shapefile CRS is", expected_CRS))
-  num_categorical <- 0
   
   for(i in 1:nrow(all_cov)){
-    fname <- all_cov[i,]
-    print(fname)
+    fname <- all_cov[i, 1]
     r <- raster(fname)
-    num_unique <- length(unique(r[]))
-    # if a raster has unique values less than col*row / 10000 is assumed to be categorical
-    if(num_unique < round((r@ncols * r@nrows) / 10000)){
-      print("categorical")
-      num_categorical <- num_categorical + 1
-      r[] <- as.factor(r[])
-    }
+
     #CRS check
     if(!compareCRS(expected_CRS,r@crs)){
       print(paste("CRS mismatch, reprojecting", fname, "to shapefile CRS"))
       r <- projectRaster(from=r, crs=expected_CRS)
     }
-    
-    #weighting
-    if(!is.null(existing_model))
-      values(r) <- values(r) * previous_model
-    
+
+    # Apply weighting from previous model
+    # TODO: apply to post-intersected values, more efficient
+    # TODO: row-by-row
+    if (!is.null(existing_model))
+        values(cov_intersected) <- values(cov_intersected) * previous_model
+
     #Intersect the covariates with the target locations
     cov_intersected <- data.frame(extract(r, to_be_intersected))
+
     colnames(cov_intersected) <- r@data@names
     if(i == 1)
       df <- data.frame(cov_intersected)
     else
       df <- cbind.data.frame(df,cov_intersected)
-    
-    if(r@data@isfactor) 
+
+    is_categorical <- identical(all_cov[i, 2], 'c')
+    if (is_categorical)
       df[,i] <- as.factor(df[,i])
     
-    # #Convert to categorical
-    # for(i in 1:length(cov_stack@layers)) 
-    #   if(cov_stack@layers[[i]]@data@isfactor) 
-    #     df[,i] <- as.factor(df[,i])
-    # #Stack 
-    # if(i == 1)
-    #   cov_stack <- stack(r)
-    # else
-    #   cov_stack <- stack(cov_stack, r)
   }
-  print(paste(as.character(i) , "covariates were read out of which", as.character(num_categorical), "recognized as categorical covariates."))
+
+
   return(df)
 }
