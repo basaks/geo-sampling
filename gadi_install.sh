@@ -5,6 +5,7 @@ module purge
 module load R/3.6.1
 module load gdal/3.0.2
 module load proj/6.2.1
+module load geos/3.8.0
 module load intel-compiler
 
 exit_on_failure() {

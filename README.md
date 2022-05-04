@@ -24,7 +24,7 @@ If R packages are not installed, geo-sampling will attempt to install required R
 
 Otherwise, they can be installed using:
 
-`install.packages(c('raster, 'clhs', 'rgdal', 'moments', 'rgeos', 'BalancedSampling'))`
+`install.packages(c('raster', 'clhs', 'rgdal', 'moments', 'rgeos', 'BalancedSampling'))`
 
 There are also some scripts to assist with installing on Gadi (NCI) and Ubuntu 18.04.
 
