@@ -12,7 +12,7 @@ echo "This script assists with installing 'geo-sampling' on Ubuntu"\
      "18.04. It will install GDAL, PROJ and R, and required R packages,"\
      "onto your system."
 
-LIB_PATH="$HOME/R/x86_64-pc-linux-gnu-library/3.4/"
+LIB_PATH="$HOME/R/x86_64-pc-linux-gnu-library/3.6/"
 
 echo "Using '$LIB_PATH' as R library path. If this is incorrect, change"\
      "'LIB_PATH' in this script."

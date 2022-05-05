@@ -6,7 +6,7 @@ source("install_import_packages.R")
 source("show_save_statistics.R")
 source("Read_Covariates.R")
   
-#import the requirements 
+#import the requirements
 required_packages <- c("raster","clhs","rgdal","moments","rgeos")
 dummy <- install_import_packages(required_packages)
 

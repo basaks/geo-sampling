@@ -1,6 +1,6 @@
 #Intersect rasters with target points and then sample representatively
 ############################################################
-sample_clhs <- function(covariate_list, output_folder, no_samples, shapefile_dir = NULL, 
+sample_clhs <- function(covariate_list, output_folder, no_samples,
                         shapefile_name = NULL, existing_model = NULL, downsample = NULL) {
   
   source("install_import_packages.R")
@@ -9,12 +9,12 @@ sample_clhs <- function(covariate_list, output_folder, no_samples, shapefile_dir
   required_packages <- c("raster","clhs","rgdal","moments")
   dummy <- install_import_packages(required_packages)
   
-  if (!is.null(shapefile_dir) & !is.null(shapefile_name)) {
-    S <- readOGR(dsn = shapefile_dir, layer = shapefile_name, verbose = FALSE)
+  if (!is.null(shapefile_name)) {
+    S <- readOGR(dsn = shapefile_name, verbose = FALSE)
   } else {
     S <- NULL
   }
-  
+
   raster_sp <- Read_Covariates(covariate_list , S, existing_model, downsample)
 
   for (i in no_samples){  
