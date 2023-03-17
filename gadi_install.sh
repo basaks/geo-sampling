@@ -2,10 +2,10 @@
 
 module purge
 
-module load R/4.1.0
-module load gdal/3.0.2
-module load proj/6.2.1
-module load geos/3.8.0
+module load R/4.2.1
+module load gdal/3.5.0
+module load proj/8.1.1
+module load geos/3.8.0 udunits/2.2.26 unixODBC/2.3.7
 module load intel-compiler
 
 exit_on_failure() {
@@ -27,7 +27,7 @@ read -p "Continue? (y|Y)" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  R --slave -e "install.packages(c('rgdal', 'raster', 'moments', 'rgeos', 'BalancedSampling', 'ggplot2', 'reshape2', 'plyr', 'scales'), repos='https://mirror.aarnet.edu.au/pub/CRAN/', lib='$R_LIBS')"
+  R --slave -e "install.packages(c('rgdal', 'R.utils', 'raster', 'rasterVis', 'entropy', 'rstudioapi', 'moments', 'rgeos', 'BalancedSampling', 'ggplot2', 'reshape2', 'plyr', 'scales'), repos='https://mirror.aarnet.edu.au/pub/CRAN/', lib='$R_LIBS', depdencies=TRUE)"
   exit_on_failure $? "Error: could not install R packages."
   CURDIR=`pwd`
   cd $HOME
@@ -35,9 +35,12 @@ then
   curl -O https://cran.r-project.org/src/contrib/Archive/clhs/clhs_0.7-2.tar.gz
   tar -xzf clhs_0.7-2.tar.gz
   R --slave -e "install.packages('$HOME/clhs', repos=NULL, type='source', lib='$R_LIBS')"
+    curl -O https://cran.r-project.org/src/contrib/Archive/SDMTools/SDMTools_1.1-221.2.tar.gz
+  tar -xzvf SDMTools_1.1-221.2.tar.gz 
+  R --slave -e "install.packages('$HOME/SDMTools', repos=NULL, type='source', lib='$R_LIBS')"
   RET=$?
-  rm clhs_0.7-2.tar.gz
-  rm -r clhs
+  rm clhs_0.7-2.tar.gz SDMTools_1.1-221.2.tar.gz
+  rm -r clhs SDMTools
   cd $CURDIR
   exit_on_failure $RET "Error: could not install 'clhs'."
   
